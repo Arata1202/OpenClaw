@@ -1,12 +1,12 @@
-DR := npx dotenvx run -f .env -fk ../.env.keys --
+DR := npx dotenvx run --
 
 # Dotenvx
 
 encrypt:
-	@npx dotenvx encrypt -f clawdbot/.env -fk .env.keys
+	@npx dotenvx encrypt
 
 decrypt:
-	@npx dotenvx decrypt -f clawdbot/.env -fk .env.keys
+	@npx dotenvx decrypt
 
 # ClawdBot
 

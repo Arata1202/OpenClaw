@@ -1,0 +1,38 @@
+services:
+  clawdbot-gateway:
+    build: ./clawdbot
+    image: ${CLAWDBOT_IMAGE:-clawdbot:local}
+    container_name: clawdbot-gateway
+    restart: unless-stopped
+    env_file: [.env]
+    environment:
+      - NODE_ENV=production
+      - HOME=/home/node
+    command:
+      - node
+      - dist/index.js
+      - gateway
+      - --port
+      - "18789"
+      - --bind
+      - "${CLAWDBOT_GATEWAY_BIND:-lan}"
+      - --token
+      - "${CLAWDBOT_GATEWAY_TOKEN}"
+    ports:
+      - "127.0.0.1:${CLAWDBOT_GATEWAY_PORT:-18789}:18789"
+    volumes:
+      - "${CLAWDBOT_CONFIG_DIR}:/home/node/.clawdbot"
+      - "${CLAWDBOT_WORKSPACE_DIR}:/home/node/clawd"
+
+  clawdbot-cli:
+    image: ${CLAWDBOT_IMAGE:-clawdbot:local}
+    build: ./clawdbot
+    profiles: ["cli"]
+    env_file: [.env]
+    environment:
+      - NODE_ENV=production
+      - HOME=/home/node
+    entrypoint: ["node", "dist/index.js"]
+    volumes:
+      - "${CLAWDBOT_CONFIG_DIR}:/home/node/.clawdbot"
+      - "${CLAWDBOT_WORKSPACE_DIR}:/home/node/clawd"

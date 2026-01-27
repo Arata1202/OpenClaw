@@ -14,6 +14,5 @@ sudo swapon /swapfile
 npm install
 
 # Build and onboard
-cd clawdbot
 docker compose build
 docker compose run --rm clawdbot-cli onboard

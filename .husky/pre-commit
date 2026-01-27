@@ -1,0 +1,7 @@
+if git diff --cached --name-only | grep -q '^clawdbot/\.env$'; then
+  npx dotenvx encrypt -f clawdbot/.env -fk .env.keys || exit 1
+
+  git diff --exit-code clawdbot/.env || {
+    exit 1
+  }
+fi

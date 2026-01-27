@@ -1,0 +1,3 @@
+[submodule "clawdbot"]
+	path = clawdbot
+	url = git@github.com:molt-bot/clawdbot.git

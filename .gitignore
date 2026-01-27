@@ -1,0 +1,8 @@
+node_modules/
+.env.keys
+.envrc
+variables.tf
+**/.terraform*
+*.tfstate
+*.tfstate.*
+**/.terraform.lock.hcl

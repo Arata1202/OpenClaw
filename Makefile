@@ -5,12 +5,6 @@ DR := npx dotenvx run --
 ssm:
 	@aws ssm start-session --target ${EC2_INSTANCE_ID}
 
-# Git
-
-pull:
-	@git pull
-	@git submodule update --remote --recursive
-
 # Dotenvx
 
 encrypt:
@@ -19,6 +13,19 @@ encrypt:
 decrypt:
 	@npx dotenvx decrypt
 
+# Docker
+
+DC := docker compose
+
+build:
+	${DR} ${DC} build
+
+up:
+	${DR} ${DC} up -d --force-recreate clawdbot-gateway
+
+onboard:
+	${DR} ${DC} run --rm clawdbot-cli onboard
+
 # ClawdBot
 
 cb-setup:
@@ -26,10 +33,6 @@ cb-setup:
 
 cb-start:
 	${DR} ./scripts/start.sh
-
-cb-update:
-	${DR} docker compose build
-	${DR} docker compose up -d --force-recreate clawdbot-gateway
 
 # Terraform
 
@@ -45,4 +48,4 @@ tf-apply:
 tf-destroy:
 	@cd terraform && terraform destroy
 
-.PHONY: ssm pull encrypt decrypt cb-setup cb-start cb-update tf-init tf-plan tf-apply tf-destroy
+.PHONY: ssm encrypt decrypt build up onboard cb-setup cb-start tf-init tf-plan tf-apply tf-destroy

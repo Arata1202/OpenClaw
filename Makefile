@@ -1,15 +1,15 @@
 DR := npx dotenvx run --
 
+# SSM
+
+ssm:
+	@aws ssm start-session --target ${EC2_INSTANCE_ID}
+
 # Git
 
 pull:
 	@git pull
 	@git submodule update --remote --recursive
-
-# SSM
-
-ssm:
-	@aws ssm start-session --target ${EC2_INSTANCE_ID}
 
 # Dotenvx
 

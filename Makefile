@@ -1,5 +1,10 @@
 DR := npx dotenvx run --
 
+# SSM
+
+ssm:
+	@aws ssm start-session --target ${EC2_INSTANCE_ID}
+
 # Dotenvx
 
 encrypt:
@@ -30,4 +35,4 @@ tf-apply:
 tf-destroy:
 	@cd terraform && terraform destroy
 
-.PHONY: encrypt decrypt cb-setup cb-start tf-init tf-plan tf-apply tf-destroy
+.PHONY: ssm encrypt decrypt cb-setup cb-start tf-init tf-plan tf-apply tf-destroy

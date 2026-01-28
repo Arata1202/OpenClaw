@@ -2,7 +2,14 @@ resource "aws_instance" "clawdbot_server" {
   ami                    = var.ami
   instance_type          = var.instance_type
   key_name               = var.key_name
+  iam_instance_profile   = aws_iam_instance_profile.clawdbot_iam_instance_profile.name
   vpc_security_group_ids = [aws_security_group.clawdbot_sg.id]
+
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 1
+  }
 
   root_block_device {
     volume_type           = var.volume_type

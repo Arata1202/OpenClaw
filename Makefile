@@ -20,19 +20,11 @@ DC := docker compose
 build:
 	${DR} ${DC} build
 
-up:
+up-f:
 	${DR} ${DC} up -d --force-recreate clawdbot-gateway
 
 onboard:
 	${DR} ${DC} run --rm clawdbot-cli onboard
-
-# ClawdBot
-
-cb-setup:
-	${DR} ./scripts/setup.sh
-
-cb-start:
-	${DR} ./scripts/start.sh
 
 # Terraform
 
@@ -48,4 +40,4 @@ tf-apply:
 tf-destroy:
 	@cd terraform && terraform destroy
 
-.PHONY: ssm encrypt decrypt build up onboard cb-setup cb-start tf-init tf-plan tf-apply tf-destroy
+.PHONY: ssm encrypt decrypt build up-f onboard tf-init tf-plan tf-apply tf-destroy

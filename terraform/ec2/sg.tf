@@ -1,7 +1,8 @@
 resource "aws_security_group" "clawdbot_sg" {
   name        = "clawdbot_sg"
   description = "clawdbot_sg"
-  ingress     = []
+
+  ingress = []
 
   egress {
     from_port   = 0

@@ -60,7 +60,6 @@ make ssm
 
 # Switch to ubuntu user and move to repository
 sudo -iu ubuntu
-cd ~/OpenClaw
 ```
 
 ```env
@@ -117,4 +116,27 @@ make up-f
 # Required
 OPENCLAW_GATEWAY_TOKEN=<UNIQUE_RANDOM_64_HEX>
 GOG_KEYRING_PASSWORD=<UNIQUE_RANDOM_64_HEX>
+```
+
+### Set Up GitHub CLI
+
+```bash
+# Create persistent directories for GitHub CLI config
+mkdir -p ~/.openclaw/gh
+sudo chown -R 1000:1000 ~/.openclaw/gh
+
+# Switch build to gh/Dockerfile (adds GitHub CLI)
+sed -i 's|build: ./openclaw|build:\n      context: .\n      dockerfile: gh/Dockerfile|g' docker-compose.yaml
+
+# Build
+make build
+
+# Start server
+make up-f
+
+# Authenticate GitHub CLI in the container
+echo "<GITHUB_PERSONAL_ACCESS_TOKEN>" | npx dotenvx run -- docker compose exec -T openclaw-gateway gh auth login --with-token
+
+# Verify authentication status
+npx dotenvx run -- docker compose exec openclaw-gateway gh auth status
 ```

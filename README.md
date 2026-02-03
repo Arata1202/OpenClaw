@@ -126,7 +126,7 @@ mkdir -p ~/.openclaw/gh
 sudo chown -R 1000:1000 ~/.openclaw/gh
 
 # Switch build to gh/Dockerfile (adds GitHub CLI)
-sed -i 's|build: ./openclaw|build:\n      context: .\n      dockerfile: gh/Dockerfile|g' docker-compose.yaml
+sed -i 's|build: ./openclaw|build:\n      context: .\n      dockerfile: skills/gh/Dockerfile|g' docker-compose.yaml
 
 # Build
 make build
@@ -141,8 +141,29 @@ echo "<GITHUB_PERSONAL_ACCESS_TOKEN>" | npx dotenvx run -- docker compose exec -
 npx dotenvx run -- docker compose exec openclaw-gateway gh auth status
 ```
 
+### Set Up Obsidian CLI
+
+```bash
+# Create persistent directories for Obsidian CLI config
+mkdir -p ~/.openclaw/obsidian-cli
+sudo chown -R 1000:1000 ~/.openclaw/obsidian-cli
+
+# Switch build to obsidian-cli/Dockerfile (adds obsidian-cli)
+sed -i 's|build: ./openclaw|build:\n      context: .\n      dockerfile: skills/obsidian-cli/Dockerfile|g' docker-compose.yaml
+
+# Build
+make build
+
+# Start server
+make up-f
+
+# Verify obsidian-cli in the container
+npx dotenvx run -- docker compose exec openclaw-gateway obsidian-cli --help
+```
+
 ### Set Up Brave Search API
 
 ```bash
+# Configure Brave Search API key
 npx -y openclaw@latest configure --section web
 ```

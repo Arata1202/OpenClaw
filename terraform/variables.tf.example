@@ -15,7 +15,7 @@ variable "instance_type" {
 
 variable "key_name" {
   type    = string
-  default = "clawdbot_key"
+  default = "openclaw_key"
 }
 
 variable "volume_type" {

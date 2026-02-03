@@ -1,6 +1,6 @@
-resource "aws_security_group" "clawdbot_sg" {
-  name        = "clawdbot_sg"
-  description = "clawdbot_sg"
+resource "aws_security_group" "openclaw_sg" {
+  name        = "openclaw_sg"
+  description = "openclaw_sg"
 
   ingress = []
 
@@ -12,6 +12,6 @@ resource "aws_security_group" "clawdbot_sg" {
   }
 
   tags = {
-    Name = "clawdbot_sg"
+    Name = "openclaw_sg"
   }
 }

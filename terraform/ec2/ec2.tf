@@ -1,9 +1,9 @@
-resource "aws_instance" "clawdbot_server" {
+resource "aws_instance" "openclaw_server" {
   ami                    = var.ami
   instance_type          = var.instance_type
   key_name               = var.key_name
-  iam_instance_profile   = aws_iam_instance_profile.clawdbot_iam_instance_profile.name
-  vpc_security_group_ids = [aws_security_group.clawdbot_sg.id]
+  iam_instance_profile   = aws_iam_instance_profile.openclaw_iam_instance_profile.name
+  vpc_security_group_ids = [aws_security_group.openclaw_sg.id]
 
   metadata_options {
     http_endpoint               = "enabled"
@@ -20,6 +20,6 @@ resource "aws_instance" "clawdbot_server" {
   }
 
   tags = {
-    Name = "clawdbot_server"
+    Name = "openclaw_server"
   }
 }

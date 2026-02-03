@@ -21,10 +21,10 @@ build:
 	${DR} ${DC} build
 
 up-f:
-	${DR} ${DC} up -d --force-recreate clawdbot-gateway
+	${DR} ${DC} up -d --force-recreate openclaw-gateway
 
 onboard:
-	${DR} ${DC} run --rm clawdbot-cli onboard
+	${DR} ${DC} run --rm openclaw-cli onboard
 
 # Terraform
 

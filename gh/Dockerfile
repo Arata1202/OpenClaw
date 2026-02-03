@@ -1,4 +1,4 @@
-FROM clawdbot:local
+FROM openclaw:local
 
 USER root
 

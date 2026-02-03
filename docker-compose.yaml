@@ -1,14 +1,14 @@
 services:
-  clawdbot-gateway:
-    build: ./clawdbot
-    image: ${CLAWDBOT_IMAGE:-clawdbot:local}
-    container_name: clawdbot-gateway
+  openclaw-gateway:
+    build: ./openclaw
+    image: ${OPENCLAW_IMAGE:-openclaw:local}
+    container_name: openclaw-gateway
     restart: unless-stopped
     env_file: [.env]
     environment:
       - NODE_ENV=production
       - HOME=/home/node
-      - GH_CONFIG_DIR=/home/node/.clawdbot/gh
+      - GH_CONFIG_DIR=/home/node/.openclaw/gh
     command:
       - node
       - dist/index.js
@@ -16,25 +16,25 @@ services:
       - --port
       - "18789"
       - --bind
-      - "${CLAWDBOT_GATEWAY_BIND:-lan}"
+      - "${OPENCLAW_GATEWAY_BIND:-lan}"
       - --token
-      - "${CLAWDBOT_GATEWAY_TOKEN}"
+      - "${OPENCLAW_GATEWAY_TOKEN}"
     ports:
-      - "127.0.0.1:${CLAWDBOT_GATEWAY_PORT:-18789}:18789"
+      - "127.0.0.1:${OPENCLAW_GATEWAY_PORT:-18789}:18789"
     volumes:
-      - "${CLAWDBOT_CONFIG_DIR}:/home/node/.clawdbot"
-      - "${CLAWDBOT_WORKSPACE_DIR}:/home/node/clawd"
+      - "${OPENCLAW_CONFIG_DIR}:/home/node/.openclaw"
+      - "${OPENCLAW_WORKSPACE_DIR}:/home/node/openclaw"
 
-  clawdbot-cli:
-    image: ${CLAWDBOT_IMAGE:-clawdbot:local}
-    build: ./clawdbot
+  openclaw-cli:
+    image: ${OPENCLAW_IMAGE:-openclaw:local}
+    build: ./openclaw
     profiles: ["cli"]
     env_file: [.env]
     environment:
       - NODE_ENV=production
       - HOME=/home/node
-      - GH_CONFIG_DIR=/home/node/.clawdbot/gh
+      - GH_CONFIG_DIR=/home/node/.openclaw/gh
     entrypoint: ["node", "dist/index.js"]
     volumes:
-      - "${CLAWDBOT_CONFIG_DIR}:/home/node/.clawdbot"
-      - "${CLAWDBOT_WORKSPACE_DIR}:/home/node/clawd"
+      - "${OPENCLAW_CONFIG_DIR}:/home/node/.openclaw"
+      - "${OPENCLAW_WORKSPACE_DIR}:/home/node/openclaw"

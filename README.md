@@ -1,6 +1,6 @@
 <div align="right">
 
-![GitHub License](https://img.shields.io/github/license/Arata1202/ClawdBot)
+![GitHub License](https://img.shields.io/github/license/Arata1202/OpenClaw)
 
 </div>
 
@@ -12,8 +12,8 @@
 # Local and VM
 
 # Clone repository
-git clone git@github.com:Arata1202/ClawdBot.git
-cd ClawdBot
+git clone git@github.com:Arata1202/OpenClaw.git
+cd OpenClaw
 
 # Initialize submodules
 git submodule update --init --recursive
@@ -28,7 +28,7 @@ npm install
 # Local
 
 # Move to repository
-cd ClawdBot/terraform
+cd OpenClaw/terraform
 
 # Prepare and edit variables file
 cp variables.tf.example variables.tf
@@ -46,7 +46,7 @@ terraform apply
 # Local
 
 # Move to repository
-cd ClawdBot
+cd OpenClaw
 
 # Prepare and edit .envrc file
 cp .envrc.example .envrc
@@ -60,7 +60,7 @@ make ssm
 
 # Switch to ubuntu user and move to repository
 sudo -iu ubuntu
-cd ~/ClawdBot
+cd ~/OpenClaw
 ```
 
 ```env
@@ -68,7 +68,7 @@ cd ~/ClawdBot
 export EC2_INSTANCE_ID=<EC2_INSTANCE_ID>
 ```
 
-### Set Up ClawdBot Server
+### Set Up OpenClaw Server
 
 ```bash
 # VM
@@ -77,7 +77,7 @@ export EC2_INSTANCE_ID=<EC2_INSTANCE_ID>
 ./ubuntu/setup.sh
 
 # Move to repository
-cd ClawdBot
+cd OpenClaw
 
 # Remove existing .env file
 rm -f .env
@@ -93,8 +93,8 @@ vi .env
 make encrypt
 
 # Create permanent directories
-mkdir -p ~/.clawdbot ~/clawd
-sudo chown -R 1000:1000 ~/.clawdbot ~/clawd
+mkdir -p ~/.openclaw ~/openclaw
+sudo chown -R 1000:1000 ~/.openclaw ~/openclaw
 
 # Add swap
 sudo fallocate -l 2G /swapfile
@@ -107,7 +107,7 @@ make build
 make onboard
 
 # Change user permissions
-sudo chown -R 1000:1000 ~/.clawdbot ~/clawd
+sudo chown -R 1000:1000 ~/.openclaw ~/openclaw
 
 # Start server
 make up-f
@@ -115,6 +115,6 @@ make up-f
 
 ```env
 # Required
-CLAWDBOT_GATEWAY_TOKEN=<UNIQUE_RANDOM_64_HEX>
+OPENCLAW_GATEWAY_TOKEN=<UNIQUE_RANDOM_64_HEX>
 GOG_KEYRING_PASSWORD=<UNIQUE_RANDOM_64_HEX>
 ```

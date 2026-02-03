@@ -140,3 +140,9 @@ echo "<GITHUB_PERSONAL_ACCESS_TOKEN>" | npx dotenvx run -- docker compose exec -
 # Verify authentication status
 npx dotenvx run -- docker compose exec openclaw-gateway gh auth status
 ```
+
+### Set Up Brave Search API
+
+```bash
+npx -y openclaw@latest configure --section web
+```

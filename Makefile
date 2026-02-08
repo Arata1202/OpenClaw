@@ -40,14 +40,12 @@ tf-apply:
 tf-destroy:
 	@cd terraform && terraform destroy
 
-# Submodule
-
-sm-update:
-	@git submodule update --remote
-
 # OpenClaw
+
+oc-update:
+	@git submodule update --remote
 
 oc-config:
 	@npx -y openclaw@latest config
 
-.PHONY: ssm encrypt decrypt build up-f onboard tf-init tf-plan tf-apply tf-destroy sm-update
+.PHONY: ssm encrypt decrypt build up-f onboard tf-init tf-plan tf-apply tf-destroy oc-update oc-config

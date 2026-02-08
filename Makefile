@@ -40,4 +40,9 @@ tf-apply:
 tf-destroy:
 	@cd terraform && terraform destroy
 
-.PHONY: ssm encrypt decrypt build up-f onboard tf-init tf-plan tf-apply tf-destroy
+# Submodule
+
+sm-update:
+	@git submodule update --remote
+
+.PHONY: ssm encrypt decrypt build up-f onboard tf-init tf-plan tf-apply tf-destroy sm-update

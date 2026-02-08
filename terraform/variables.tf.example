@@ -20,7 +20,7 @@ variable "volume_type" {
 
 variable "volume_size" {
   type    = number
-  default = "20"
+  default = "25"
 }
 
 variable "volume_encrypted" {

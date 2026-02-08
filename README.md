@@ -161,16 +161,9 @@ make up-f
 npx dotenvx run -- docker compose exec openclaw-gateway obsidian-cli --help
 ```
 
-### Set Up Brave Search API
-
-```bash
-# Configure Brave Search API key
-npx -y openclaw@latest configure --section web
-```
-
 ### Update OpenClaw Settings
 
 ```bash
 # Launch the configuration tool
-npx -y openclaw@latest config
+make oc-config
 ```

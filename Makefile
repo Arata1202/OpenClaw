@@ -45,4 +45,9 @@ tf-destroy:
 sm-update:
 	@git submodule update --remote
 
+# OpenClaw
+
+oc-config:
+	@npx -y openclaw@latest config
+
 .PHONY: ssm encrypt decrypt build up-f onboard tf-init tf-plan tf-apply tf-destroy sm-update

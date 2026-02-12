@@ -161,6 +161,29 @@ make up-f
 npx dotenvx run -- docker compose exec openclaw-gateway obsidian-cli --help
 ```
 
+### Set Up AWS CLI
+
+```bash
+# Create persistent directories for AWS CLI config
+mkdir -p ~/.openclaw/aws
+sudo chown -R 1000:1000 ~/.openclaw/aws
+
+# Switch build to aws-cli/Dockerfile (adds aws-cli)
+sed -i 's|build: ./openclaw|build:\n      context: .\n      dockerfile: skills/aws-cli/Dockerfile|g' docker-compose.yaml
+
+# Build
+make build
+
+# Start server
+make up-f
+
+# Verify aws-cli in the container
+npx dotenvx run -- docker compose exec openclaw-gateway aws --version
+
+# Verify caller identity
+npx dotenvx run -- docker compose exec openclaw-gateway sh -lc 'AWS_CONFIG_FILE=/home/node/.openclaw/aws/config AWS_SHARED_CREDENTIALS_FILE=/home/node/.openclaw/aws/credentials aws sts get-caller-identity'
+```
+
 ### Update OpenClaw Settings
 
 ```bash

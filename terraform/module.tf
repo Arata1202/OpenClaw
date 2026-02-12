@@ -14,6 +14,4 @@ module "lambda" {
 
   microcms_service_domain = var.microcms_service_domain
   microcms_api_key        = var.microcms_api_key
-
-  ec2_invoke_role_name = module.ec2.iam_role_name
 }

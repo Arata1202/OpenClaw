@@ -180,8 +180,14 @@ make up-f
 # Verify aws-cli in the container
 npx dotenvx run -- docker compose exec openclaw-gateway aws --version
 
+# Configure AWS credentials in the container
+npx dotenvx run -- docker compose exec -it openclaw-gateway sh -lc 'AWS_CONFIG_FILE=/home/node/.openclaw/aws/config AWS_SHARED_CREDENTIALS_FILE=/home/node/.openclaw/aws/credentials aws configure'
+
+# Disable aws pager permanently for this profile
+npx dotenvx run -- docker compose exec openclaw-gateway sh -lc 'AWS_CONFIG_FILE=/home/node/.openclaw/aws/config AWS_SHARED_CREDENTIALS_FILE=/home/node/.openclaw/aws/credentials aws configure set cli_pager ""'
+
 # Verify caller identity
-npx dotenvx run -- docker compose exec openclaw-gateway sh -lc 'AWS_CONFIG_FILE=/home/node/.openclaw/aws/config AWS_SHARED_CREDENTIALS_FILE=/home/node/.openclaw/aws/credentials aws sts get-caller-identity'
+npx dotenvx run -- docker compose exec openclaw-gateway sh -lc 'AWS_PAGER="" AWS_CONFIG_FILE=/home/node/.openclaw/aws/config AWS_SHARED_CREDENTIALS_FILE=/home/node/.openclaw/aws/credentials aws sts get-caller-identity'
 ```
 
 ### Update OpenClaw Settings

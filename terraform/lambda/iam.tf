@@ -29,9 +29,7 @@ resource "aws_iam_role_policy" "openclaw_lambda_iam_role_policy" {
         ]
         Resource = [
           aws_lambda_function.openclaw_microcms_lambda_function.arn,
-          "${aws_lambda_function.openclaw_microcms_lambda_function.arn}:*",
-          aws_lambda_function.openclaw_nanobanana_lambda_function.arn,
-          "${aws_lambda_function.openclaw_nanobanana_lambda_function.arn}:*"
+          "${aws_lambda_function.openclaw_microcms_lambda_function.arn}:*"
         ]
       }
     ]

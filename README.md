@@ -125,8 +125,8 @@ GOG_KEYRING_PASSWORD=<UNIQUE_RANDOM_64_HEX>
 mkdir -p ~/.openclaw/gh
 sudo chown -R 1000:1000 ~/.openclaw/gh
 
-# Switch build to gh/Dockerfile (adds GitHub CLI)
-sed -i 's|build: ./openclaw|build:\n      context: .\n      dockerfile: skills/gh/Dockerfile|g' docker-compose.yaml
+# Switch build to github-cli/Dockerfile (adds GitHub CLI)
+sed -i 's|build: ./openclaw|build:\n      context: .\n      dockerfile: skills/github-cli/Dockerfile|g' docker-compose.yaml
 
 # Build
 make build

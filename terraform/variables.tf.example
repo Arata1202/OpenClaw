@@ -32,3 +32,23 @@ variable "volume_kms_key_id" {
   type    = string
   default = null
 }
+
+variable "microcms_service_domain" {
+  type    = string
+  default = ""
+}
+
+variable "microcms_api_key" {
+  type      = string
+  default   = ""
+}
+
+variable "nanobanana_api_key" {
+  type      = string
+  default   = ""
+}
+
+variable "nanobanana_model" {
+  type    = string
+  default = "gemini-3-pro-image-preview"
+}

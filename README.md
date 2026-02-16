@@ -125,14 +125,8 @@ GOG_KEYRING_PASSWORD=<UNIQUE_RANDOM_64_HEX>
 mkdir -p ~/.openclaw/gh
 sudo chown -R 1000:1000 ~/.openclaw/gh
 
-# Switch build to github-cli/Dockerfile (adds GitHub CLI)
-sed -i 's|build: ./openclaw|build:\n      context: .\n      dockerfile: skills/github-cli/Dockerfile|g' docker-compose.yaml
-
-# Build
-make build
-
-# Start server
-make up-f
+# Switch build to skills/Dockerfile
+make oc-restart
 
 # Authenticate GitHub CLI in the container
 echo "<GITHUB_PERSONAL_ACCESS_TOKEN>" | npx dotenvx run -- docker compose exec -T openclaw-gateway gh auth login --with-token
@@ -148,14 +142,8 @@ npx dotenvx run -- docker compose exec openclaw-gateway gh auth status
 mkdir -p ~/.openclaw/aws
 sudo chown -R 1000:1000 ~/.openclaw/aws
 
-# Switch build to aws-cli/Dockerfile (adds aws-cli)
-sed -i 's|build: ./openclaw|build:\n      context: .\n      dockerfile: skills/aws-cli/Dockerfile|g' docker-compose.yaml
-
-# Build
-make build
-
-# Start server
-make up-f
+# Switch build to skills/Dockerfile
+make oc-restart
 
 # Verify aws-cli in the container
 npx dotenvx run -- docker compose exec openclaw-gateway aws --version

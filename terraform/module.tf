@@ -8,10 +8,3 @@ module "ec2" {
   volume_encrypted  = var.volume_encrypted
   volume_kms_key_id = var.volume_kms_key_id
 }
-
-module "lambda" {
-  source = "./lambda"
-
-  microcms_service_domain = var.microcms_service_domain
-  microcms_api_key        = var.microcms_api_key
-}

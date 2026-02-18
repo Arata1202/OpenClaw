@@ -42,8 +42,8 @@ tf-destroy:
 
 # OpenClaw
 
-oc-restart:
-	@./scripts/restart.sh
+oc-start:
+	@./scripts/start.sh
 
 oc-update:
 	@git submodule update --remote
@@ -51,4 +51,4 @@ oc-update:
 oc-config:
 	@npx -y openclaw@latest config
 
-.PHONY: ssm encrypt decrypt build up-f onboard tf-init tf-plan tf-apply tf-destroy oc-restart oc-update oc-config
+.PHONY: ssm encrypt decrypt build up-f onboard tf-init tf-plan tf-apply tf-destroy oc-start oc-update oc-config

@@ -126,7 +126,7 @@ mkdir -p ~/.openclaw/gh
 sudo chown -R 1000:1000 ~/.openclaw/gh
 
 # Switch build to skills/Dockerfile
-make oc-restart
+make oc-start
 
 # Authenticate GitHub CLI in the container
 echo "<GITHUB_PERSONAL_ACCESS_TOKEN>" | npx dotenvx run -- docker compose exec -T openclaw-gateway gh auth login --with-token
@@ -143,7 +143,7 @@ mkdir -p ~/.openclaw/aws
 sudo chown -R 1000:1000 ~/.openclaw/aws
 
 # Switch build to skills/Dockerfile
-make oc-restart
+make oc-start
 
 # Verify aws-cli in the container
 npx dotenvx run -- docker compose exec openclaw-gateway aws --version

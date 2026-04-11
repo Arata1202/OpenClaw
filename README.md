@@ -158,6 +158,26 @@ npx dotenvx run -- docker compose exec openclaw-gateway sh -lc 'AWS_CONFIG_FILE=
 npx dotenvx run -- docker compose exec openclaw-gateway sh -lc 'AWS_PAGER="" AWS_CONFIG_FILE=/home/node/.openclaw/aws/config AWS_SHARED_CREDENTIALS_FILE=/home/node/.openclaw/aws/credentials aws sts get-caller-identity'
 ```
 
+### Set Up rclone (Google Drive)
+
+```bash
+# Create persistent directories for rclone config
+mkdir -p ~/.openclaw/rclone
+sudo chown -R 1000:1000 ~/.openclaw/rclone
+
+# Switch build to skills/Dockerfile
+make oc-start
+
+# Verify rclone in the container
+npx dotenvx run -- docker compose exec openclaw-gateway rclone version
+
+# Configure Google Drive remote (headless mode)
+npx dotenvx run -- docker compose exec -it openclaw-gateway rclone config
+
+# Verify Google Drive access
+npx dotenvx run -- docker compose exec openclaw-gateway rclone ls gdrive:
+```
+
 ### Update OpenClaw Settings
 
 ```bash

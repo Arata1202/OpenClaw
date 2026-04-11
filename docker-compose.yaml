@@ -24,6 +24,7 @@ services:
     volumes:
       - "${OPENCLAW_CONFIG_DIR}:/home/node/.openclaw"
       - "${OPENCLAW_WORKSPACE_DIR}:/home/node/openclaw"
+      - "${OPENCLAW_CONFIG_DIR}/rclone:/home/node/.config/rclone"
 
   openclaw-cli:
     image: ${OPENCLAW_IMAGE:-openclaw:local}
@@ -38,3 +39,4 @@ services:
     volumes:
       - "${OPENCLAW_CONFIG_DIR}:/home/node/.openclaw"
       - "${OPENCLAW_WORKSPACE_DIR}:/home/node/openclaw"
+      - "${OPENCLAW_CONFIG_DIR}/rclone:/home/node/.config/rclone"

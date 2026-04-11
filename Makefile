@@ -18,7 +18,6 @@ decrypt:
 DC := docker compose
 
 build:
-	@git co .
 	${DR} ${DC} build
 
 up-f:

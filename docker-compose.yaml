@@ -9,6 +9,7 @@ services:
       - NODE_ENV=production
       - HOME=/home/node
       - GH_CONFIG_DIR=/home/node/.openclaw/gh
+      - RCLONE_CONFIG=/home/node/.openclaw/rclone/rclone.conf
     command:
       - node
       - dist/index.js
@@ -24,7 +25,6 @@ services:
     volumes:
       - "${OPENCLAW_CONFIG_DIR}:/home/node/.openclaw"
       - "${OPENCLAW_WORKSPACE_DIR}:/home/node/openclaw"
-      - "${OPENCLAW_CONFIG_DIR}/rclone:/home/node/.config/rclone"
 
   openclaw-cli:
     image: ${OPENCLAW_IMAGE:-openclaw:local}
@@ -35,8 +35,8 @@ services:
       - NODE_ENV=production
       - HOME=/home/node
       - GH_CONFIG_DIR=/home/node/.openclaw/gh
+      - RCLONE_CONFIG=/home/node/.openclaw/rclone/rclone.conf
     entrypoint: ["node", "dist/index.js"]
     volumes:
       - "${OPENCLAW_CONFIG_DIR}:/home/node/.openclaw"
       - "${OPENCLAW_WORKSPACE_DIR}:/home/node/openclaw"
-      - "${OPENCLAW_CONFIG_DIR}/rclone:/home/node/.config/rclone"

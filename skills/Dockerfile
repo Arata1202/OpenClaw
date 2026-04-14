@@ -11,6 +11,10 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg -o 
     && rm -rf /var/lib/apt/lists/*
 
 # rclone (Google Drive)
-RUN curl -fsSL https://rclone.org/install.sh | bash
+RUN if command -v rclone >/dev/null 2>&1; then \
+      rclone version; \
+    else \
+      curl -fsSL https://rclone.org/install.sh | bash; \
+    fi
 
 USER node
